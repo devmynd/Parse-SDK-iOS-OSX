@@ -72,14 +72,15 @@ static NSString *const _PFFileStateSecureDomain = @"files.parsetfss.com";
         return nil;
     }
 
-    NSURLComponents *components = [NSURLComponents componentsWithString:self.urlString];
+    NSString *urlString = [self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSURLComponents *components = [NSURLComponents componentsWithString:urlString];
     if (!components) {
-        return self.urlString;
+        return urlString;
     }
 
     NSString *scheme = components.scheme;
     if (![scheme isEqualToString:@"http"]) {
-        return self.urlString;
+        return urlString;
     }
 
     if ([components.host isEqualToString:_PFFileStateSecureDomain]) {
