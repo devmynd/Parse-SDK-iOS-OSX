@@ -133,6 +133,10 @@
     XCTAssertEqualObjects(state.urlString, @"http://files.parsetfss.com/yolo2.txt");
     XCTAssertEqualObjects(state.secureURLString, @"https://files.parsetfss.com/yolo2.txt");
 
+    state.urlString = @"https://my-parse-server.com/parse/files/yolo 3.txt";
+    XCTAssertEqualObjects(state.urlString, @"https://my-parse-server.com/parse/files/yolo 3.txt");
+    XCTAssertEqualObjects(state.secureURLString, @"https://my-parse-server.com/parse/files/yolo%203.txt");
+
     state.urlString = nil;
     XCTAssertNil(state.urlString);
     XCTAssertNil(state.secureURLString);
